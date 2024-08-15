@@ -20,6 +20,20 @@ public class Laboratorio1 {
 
     // 1B
     // Convertir un número binario a entero decimal.
+    public static int binarioADecimal(String binario) {
+        int decimal = 0;
+        int base = 1; // Valor inicial de la base (2^0)
+
+        // Convertir el string binario a decimal desde el último dígito al primero
+        for (int i = binario.length() - 1; i >= 0; i--) {
+            if (binario.charAt(i) == '1') {
+                decimal += base; // Sumar el valor de la base si el dígito es '1'
+            }
+            base *= 2; // Multiplicar la base por 2 en cada iteración
+        }
+
+        return decimal;
+    }
 
 
     // 1C
