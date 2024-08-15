@@ -80,6 +80,14 @@ public class Laboratorio1 {
     }
 
     public static boolean esPotenciaDeDos(int numero) {
-        return (numero > 0) && ((numero & (numero - 1)) == 0);
+        if (numero <= 0) {
+            return false; // Solo consideramos números positivos
+        }
+
+        while (numero % 2 == 0) {
+            numero /= 2; // Divide el número por 2
+        }
+
+        return numero == 1; // Si llegamos a 1, es potencia de 2
     }
 }
