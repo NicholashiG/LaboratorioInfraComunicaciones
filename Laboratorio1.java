@@ -18,6 +18,10 @@ public class Laboratorio1 {
             return binario;
     }
 
+    // 1B
+    // Convertir un número binario a entero decimal.
+
+
     // 1C
     //Convertir un número de entero decimal a hexadecimal, especificando el ancho en dígitos hexadecimales
     public static String convertirDecimalAHexadecimal(int decimalNumber, int ancho) {
@@ -31,6 +35,14 @@ public class Laboratorio1 {
 
         return hexNumber;
     }
+
+    // 1D
+    // Convertir un número de hexadecimal a entero decimal.
+
+
+    // 1E
+    // Convertir un número de binario a hexadecimal.
+    
 
     // 1F
     // Convertir un número hexadecimal a binario
@@ -90,4 +102,24 @@ public class Laboratorio1 {
 
         return numero == 1; // Si llegamos a 1, es potencia de 2
     }
+
+    // 3A
+    // Dada una cadena de un tamaño especificado, dividirla en dos partes,
+    // separando los primeros n bits y el resto. El resultado es un String[]
+    // de dos elementos: la primera parte y la segunda parte.
+
+    // 3B
+    // Dada una cadena de un tamaño especificado, dividirla en tres partes,
+    // separando los primeros n bits, los siguientes m bits y el resto. El resultado
+    // es un String[] de tres elementos: la primera parte y la segunda parte.
+
+    // 3C
+    // Dada una cadena de un tamaño especificado y un int[] con los tamaños de las partes,
+    // separar las partes de la cadena. El resultado es un String[] de tantas partes se haya
+    // especificado en el int [], más el fragmento final con el sobrante, si aplica.
+    // Debe validar que la suma de los elementos del int[] sea igual o menor que la longitud total
+    // del String de entrada. En caso de que no coincida, retorna null. Este valor debe ser validado en el
+    // metodo principal donde prueba que funcione.
+
+    // 4
 }
