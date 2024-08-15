@@ -38,7 +38,29 @@ public class Laboratorio1 {
 
     // 1D
     // Convertir un número de hexadecimal a entero decimal.
+    public static int hexToDecimal(String hex) {
+        int decimal = 0;
+        int base = 1; // Valor de la base (16^0)
 
+        // Convertir el string hexadecimal a decimal desde el último dígito al primero
+        for (int i = hex.length() - 1; i >= 0; i--) {
+            char hexChar = hex.charAt(i);
+
+            // Si el carácter es un dígito (0-9)
+            if (hexChar >= '0' && hexChar <= '9') {
+                decimal += (hexChar - '0') * base;
+            }
+            // Si el carácter es una letra (A-F)
+            else if (hexChar >= 'A' && hexChar <= 'F') {
+                decimal += (hexChar - 'A' + 10) * base;
+            }
+
+            // Incrementar la base (16^1, 16^2, ...)
+            base *= 16;
+        }
+
+        return decimal;
+    }
 
     // 1E
     // Convertir un número de binario a hexadecimal.
