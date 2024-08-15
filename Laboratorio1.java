@@ -6,16 +6,16 @@ public class Laboratorio1 {
     // 1A
     // Convertir un entero decimal a binario, especificando el ancho en bits.
     public static String convertirADecimal(int numeroDecimal, int anchoBits) {
-            String binario = Integer.toBinaryString(numeroDecimal);
-            // Asegura que el resultado tenga el ancho especificado
-            while (binario.length() < anchoBits) {
-                binario = "0" + binario;
-            }
-            // Si el binario excede el ancho, se cortará
-            if (binario.length() > anchoBits) {
-                binario = binario.substring(binario.length() - anchoBits);
-            }
-            return binario;
+        String binario = Integer.toBinaryString(numeroDecimal);
+        // Asegura que el resultado tenga el ancho especificado
+        while (binario.length() < anchoBits) {
+            binario = "0" + binario;
+        }
+        // Si el binario excede el ancho, se cortará
+        if (binario.length() > anchoBits) {
+            binario = binario.substring(binario.length() - anchoBits);
+        }
+        return binario;
     }
 
     // 1B
@@ -64,7 +64,7 @@ public class Laboratorio1 {
 
     // 1E
     // Convertir un número de binario a hexadecimal.
-    
+
 
     // 1F
     // Convertir un número hexadecimal a binario
@@ -142,6 +142,74 @@ public class Laboratorio1 {
     // Debe validar que la suma de los elementos del int[] sea igual o menor que la longitud total
     // del String de entrada. En caso de que no coincida, retorna null. Este valor debe ser validado en el
     // metodo principal donde prueba que funcione.
+
+    public class SepararCadena {
+        public static void main(String[] args) {
+            // Ejemplo 1
+            String s = generarCadena(16);
+            int[] tam = {5, 9, 2};
+            String[] s9 = separarCadena(s, tam);
+            if (s9 != null) {
+                for (int i = 0; i < s9.length; i++) {
+                    System.out.println("s9[" + i + "] = \"" + s9[i] + "\"");
+                }
+            } else {
+                System.out.println("La suma de los tamaños es mayor que la longitud de la cadena.");
+            }
+
+            // Ejemplo 2
+            String t = generarCadena(32);
+            int[] tam2 = {4, 5, 2, 3, 8};
+            String[] s10 = separarCadena(t, tam2);
+            if (s10 != null) {
+                for (int i = 0; i < s10.length; i++) {
+                    System.out.println("s10[" + i + "] = \"" + s10[i] + "\"");
+                }
+            } else {
+                System.out.println("La suma de los tamaños es mayor que la longitud de la cadena.");
+            }
+        }
+
+        // Método para generar una cadena de una longitud específica (puede ser cualquier implementación)
+        public static String generarCadena(int longitud) {
+            StringBuilder sb = new StringBuilder(longitud);
+            for (int i = 0; i < longitud; i++) {
+                sb.append((char) ('a' + (i % 26))); // Generar secuencia de 'a' a 'z'
+            }
+            return sb.toString();
+        }
+
+        // Método para separar la cadena en partes según los tamaños especificados
+        public static String[] separarCadena(String cadena, int[] tamanos) {
+            // Validar que la suma de los tamaños sea igual o menor que la longitud de la cadena
+            int sumaTamanos = 0;
+            for (int tam : tamanos) {
+                sumaTamanos += tam;
+            }
+            if (sumaTamanos > cadena.length()) {
+                return null; // Retorna null si la suma es mayor que la longitud de la cadena
+            }
+
+            String[] partes = new String[tamanos.length + 1]; // Arreglo de partes
+            int inicio = 0;
+
+            // Separar la cadena en partes según los tamaños especificados
+            for (int i = 0; i < tamanos.length; i++) {
+                partes[i] = cadena.substring(inicio, inicio + tamanos[i]);
+                inicio += tamanos[i];
+            }
+
+            // Agregar el sobrante si hay alguno
+            if (inicio < cadena.length()) {
+                partes[tamanos.length] = cadena.substring(inicio);
+            } else {
+                partes = java.util.Arrays.copyOf(partes, tamanos.length); // Eliminar el espacio extra si no hay sobrante
+            }
+
+            return partes;
+        }
+    }
+
 
     // 4
 }
