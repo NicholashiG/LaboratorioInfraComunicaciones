@@ -1,6 +1,130 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Laboratorio1 {
     public static void main(String[] args) {
-        // Del main nos encargamos cuando tengamos todas las funciones hechas
+        Scanner scanner = new Scanner(System.in);
+        String opcion;
+
+        do {
+            System.out.println("Selecciona una opción:");
+            System.out.println("1a - Convertir un entero decimal a binario");
+            System.out.println("1b - Convertir un número binario a entero decimal");
+            System.out.println("1c - Convertir un decimal a hexadecimal");
+            System.out.println("1d - Convertir un número hexadecimal a entero decimal");
+            System.out.println("1e - Convertir un número binario a hexadecimal");
+            System.out.println("1f - Convertir un número hexadecimal a binario");
+            System.out.println("2a - Crear un String de un tamaño especificado");
+            System.out.println("2b - Dividir la cadena en grupos");
+            System.out.println("3a - Dividir una cadena en dos partes");
+            System.out.println("3b - Dividir una cadena en tres partes");
+            System.out.println("3c - Separar una cadena según tamaños especificados");
+            System.out.println("4 - Unir partes para conformar una cadena completa");
+            System.out.println("q - Salir");
+            System.out.print("Escribe tu opción: ");
+            opcion = scanner.nextLine();
+
+            switch (opcion) {
+                case "1a":
+                    System.out.print("Introduce un número decimal: ");
+                    int numeroDecimal = scanner.nextInt();
+                    System.out.print("Introduce el ancho en bits: ");
+                    int anchoBits = scanner.nextInt();
+                    scanner.nextLine(); // Limpiar el buffer
+                    System.out.println("Binario: " + convertirADecimal(numeroDecimal, anchoBits));
+                    break;
+
+                case "1b":
+                    System.out.print("Introduce un número binario: ");
+                    String binario = scanner.nextLine();
+                    System.out.println("Decimal: " + binarioADecimal(binario));
+                    break;
+
+                case "1c":
+                    System.out.print("Introduce un número decimal: ");
+                    int decimalNumber = scanner.nextInt();
+                    System.out.print("Introduce el ancho en dígitos hexadecimales: ");
+                    int anchoHex = scanner.nextInt();
+                    scanner.nextLine(); // Limpiar el buffer
+                    System.out.println("Hexadecimal: " + convertirDecimalAHexadecimal(decimalNumber, anchoHex));
+                    break;
+
+                case "1d":
+                    System.out.print("Introduce un número hexadecimal: ");
+                    String hex = scanner.nextLine();
+                    System.out.println("Decimal: " + hexToDecimal(hex));
+                    break;
+
+                case "1e":
+                    // Aquí pondrías la llamada a la función para convertir de binario a hexadecimal
+                    break;
+
+                case "1f":
+                    System.out.print("Introduce un número hexadecimal: ");
+                    String numeroHexadecimal = scanner.nextLine();
+                    System.out.println("Binario: " + convertirAHexadecimal(numeroHexadecimal));
+                    break;
+
+                case "2a":
+                    System.out.print("Introduce el tamaño de la cadena: ");
+                    int tamanio = scanner.nextInt();
+                    scanner.nextLine(); // Limpiar el buffer
+                    System.out.println("Cadena generada: " + generarCadenaFija(tamanio));
+                    break;
+
+                case "2b":
+                    System.out.print("Introduce la cadena: ");
+                    String cadena = scanner.nextLine();
+                    System.out.print("Introduce el tamaño del segmento (potencia de 2): ");
+                    int tamanioSegmento = scanner.nextInt();
+                    scanner.nextLine(); // Limpiar el buffer
+                    String[] segmentos = dividirCadena(cadena, tamanioSegmento);
+                    System.out.println("Segmentos: " + java.util.Arrays.toString(segmentos));
+                    break;
+
+                case "3a":
+                    // Implementación para dividir en dos partes
+                    break;
+
+                case "3b":
+                    // Implementación para dividir en tres partes
+                    break;
+
+                case "3c":
+                    System.out.print("Introduce la cadena: ");
+                    String cadenaParaSeparar = scanner.nextLine();
+                    System.out.print("Introduce los tamaños de las partes (separados por espacios): ");
+                    String[] tamanosString = scanner.nextLine().split(" ");
+                    int[] tamanos = new int[tamanosString.length];
+                    for (int i = 0; i < tamanosString.length; i++) {
+                        tamanos[i] = Integer.parseInt(tamanosString[i]);
+                    }
+                    String[] partes = separarCadena(cadenaParaSeparar, tamanos);
+                    System.out.println("Partes: " + java.util.Arrays.toString(partes));
+                    break;
+
+                case "4":
+                    System.out.print("Introduce las partes (separadas por comas): ");
+                    String[] partesString = scanner.nextLine().split(",");
+                    List<String> partesList = new ArrayList<>();
+                    for (String parte : partesString) {
+                        partesList.add(parte.trim());
+                    }
+                    System.out.println("Cadena unida: " + unirCadenas(partesList));
+                    break;
+
+                case "q":
+                    System.out.println("Saliendo...");
+                    break;
+
+                default:
+                    System.out.println("Opción no válida. Intenta de nuevo.");
+            }
+
+        } while (!opcion.equals("q"));
+
+        scanner.close();
     }
 
     // 1A
@@ -199,4 +323,12 @@ public class Laboratorio1 {
 
 
     // 4
+    // Dadas las partes que conforman cada cadena, unirlas para conformarla completamente.
+    public static String unirCadenas(List<String> partes) {
+        StringBuilder cadenaCompleta = new StringBuilder();
+        for (String parte : partes) {
+            cadenaCompleta.append(parte);
+        }
+        return cadenaCompleta.toString();
+    }
 }
