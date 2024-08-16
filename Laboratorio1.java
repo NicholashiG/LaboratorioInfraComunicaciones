@@ -57,7 +57,9 @@ public class Laboratorio1 {
                     break;
 
                 case "1e":
-                    // Aquí pondrías la llamada a la función para convertir de binario a hexadecimal
+                    System.out.print("Introduce un número binario: ");
+                    String hexadecimal = scanner.nextLine();
+                    System.out.println("Hexadecimal: " + binarioAHexadecimal(hexadecimal));
                     break;
 
                 case "1f":
@@ -84,12 +86,30 @@ public class Laboratorio1 {
                     break;
 
                 case "3a":
-                    // Implementación para dividir en dos partes
+                    System.out.print("Introduce la cadena: ");
+                    String cadena1 = scanner.nextLine();
+                    System.out.print("Introduce el indice de separacion de la cadena : ");
+                    int indiceSeparacion = scanner.nextInt();
+                    scanner.nextLine(); // Limpiar el buffer
+                    String[] partes2 = separarCadena(cadena1, indiceSeparacion);
+                    System.out.println("Segmento 1: " + (partes2[0]));
+                    System.out.println("Segmento 2: " + (partes2[1]));
                     break;
 
                 case "3b":
-                    // Implementación para dividir en tres partes
+                    System.out.print("Introduce la cadena: ");
+                    String cadena2 = scanner.nextLine();
+                    System.out.print("Introduce el indice de separacion 1 : ");
+                    int indiceSeparacion2 = scanner.nextInt();
+                    System.out.print("Introduce el indice de separacion 2 : ");
+                    int indiceSeparacion3 = scanner.nextInt();
+                    scanner.nextLine(); // Limpiar el buffer
+                    String[] partes3 = separarCadena2(cadena2, indiceSeparacion2,indiceSeparacion3);
+                    System.out.println("Segmento 1: " + (partes3[0]));
+                    System.out.println("Segmento 2: " + (partes3[1]));
+                    System.out.println("Segmento 3: " + (partes3[2]));
                     break;
+                    
 
                 case "3c":
                     System.out.print("Introduce la cadena: ");
@@ -142,23 +162,31 @@ public class Laboratorio1 {
         return binario;
     }
 
-    // 1B
-    // Convertir un número binario a entero decimal.
+    // // 1B
+    // // Convertir un número binario a entero decimal.
+    // public static int binarioADecimal(String binario) {
+    //     int decimal = 0;
+    //     int base = 1; // Valor inicial de la base (2^0)
+
+    //     // Convertir el string binario a decimal desde el último dígito al primero
+    //     for (int i = binario.length() - 1; i >= 0; i--) {
+    //         if (binario.charAt(i) == '1') {
+    //             decimal += base; // Sumar el valor de la base si el dígito es '1'
+    //         }
+    //         base *= 2; // Multiplicar la base por 2 en cada iteración
+    //     }
+
+    //     return decimal;
+    // }
+
+    // // 1B
+    // // Convertir un número binario a entero decimal.
+    // En este método, Integer.parseInt(binario, 2) convierte el número binario 
+    //(representado como una cadena) a un entero decimal usando la base 2.
     public static int binarioADecimal(String binario) {
-        int decimal = 0;
-        int base = 1; // Valor inicial de la base (2^0)
-
-        // Convertir el string binario a decimal desde el último dígito al primero
-        for (int i = binario.length() - 1; i >= 0; i--) {
-            if (binario.charAt(i) == '1') {
-                decimal += base; // Sumar el valor de la base si el dígito es '1'
-            }
-            base *= 2; // Multiplicar la base por 2 en cada iteración
-        }
-
-        return decimal;
+        return Integer.parseInt(binario, 2);
     }
-
+    
 
     // 1C
     //Convertir un número de entero decimal a hexadecimal, especificando el ancho en dígitos hexadecimales
@@ -202,6 +230,14 @@ public class Laboratorio1 {
 
     // 1E
     // Convertir un número de binario a hexadecimal.
+    public static String binarioAHexadecimal(String binario) {
+        // Convertir binario a decimal
+        int decimal = Integer.parseInt(binario, 2);
+        // Convertir decimal a hexadecimal
+        return Integer.toHexString(decimal).toUpperCase();
+        // Integer.toHexString(decimal) convierte el número decimal a una cadena hexadecimal. 
+        // Luego usamos toUpperCase() para asegurarnos de que los dígitos hexadecimales estén en mayúsculas.
+    }
 
 
     // 1F
@@ -268,10 +304,38 @@ public class Laboratorio1 {
     // separando los primeros n bits y el resto. El resultado es un String[]
     // de dos elementos: la primera parte y la segunda parte.
 
+    public static String[] separarCadena(String cadena, int n) {
+        // Verificar que n no sea mayor que la longitud de la cadena
+        if (n > cadena.length()) {
+            throw new IllegalArgumentException("El valor de n es mayor que la longitud de la cadena");
+        }
+        
+        // Dividir la cadena en dos partes
+        String primeraParte = cadena.substring(0, n);
+        String segundaParte = cadena.substring(n);
+        
+        return new String[] { primeraParte, segundaParte };
+    }
+
+
     // 3B
     // Dada una cadena de un tamaño especificado, dividirla en tres partes,
     // separando los primeros n bits, los siguientes m bits y el resto. El resultado
     // es un String[] de tres elementos: la primera parte y la segunda parte.
+    public static String[] separarCadena2(String cadena, int n, int m) {
+        // Verificar que n y m no excedan la longitud de la cadena
+        if (n + m > cadena.length()) {
+            throw new IllegalArgumentException("La suma de n y m es mayor que la longitud de la cadena");
+        }
+
+        // Dividir la cadena en tres partes
+        String primeraParte = cadena.substring(0, n);
+        String segundaParte = cadena.substring(n, n + m);
+        String terceraParte = cadena.substring(n + m);
+
+        return new String[] { primeraParte, segundaParte, terceraParte };
+    }
+
 
     // 3C
     // Dada una cadena de un tamaño especificado y un int[] con los tamaños de las partes,
