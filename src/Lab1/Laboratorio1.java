@@ -106,12 +106,12 @@ public class Laboratorio1 {
                     System.out.print("Introduce el indice de separacion 2 : ");
                     int indiceSeparacion3 = scanner.nextInt();
                     scanner.nextLine(); // Limpiar el buffer
-                    String[] partes3 = separarCadena2(cadena2, indiceSeparacion2,indiceSeparacion3);
+                    String[] partes3 = separarCadena2(cadena2, indiceSeparacion2, indiceSeparacion3);
                     System.out.println("Segmento 1: " + (partes3[0]));
                     System.out.println("Segmento 2: " + (partes3[1]));
                     System.out.println("Segmento 3: " + (partes3[2]));
                     break;
-                    
+
 
                 case "3c":
                     System.out.print("Introduce la cadena: ");
@@ -188,7 +188,7 @@ public class Laboratorio1 {
     public static int binarioADecimal(String binario) {
         return Integer.parseInt(binario, 2);
     }
-    
+
 
     // 1C
     //Convertir un número de entero decimal a hexadecimal, especificando el ancho en dígitos hexadecimales
@@ -311,12 +311,12 @@ public class Laboratorio1 {
         if (n > cadena.length()) {
             throw new IllegalArgumentException("El valor de n es mayor que la longitud de la cadena");
         }
-        
+
         // Dividir la cadena en dos partes
         String primeraParte = cadena.substring(0, n);
         String segundaParte = cadena.substring(n);
-        
-        return new String[] { primeraParte, segundaParte };
+
+        return new String[]{primeraParte, segundaParte};
     }
 
 
@@ -335,7 +335,7 @@ public class Laboratorio1 {
         String segundaParte = cadena.substring(n, n + m);
         String terceraParte = cadena.substring(n + m);
 
-        return new String[] { primeraParte, segundaParte, terceraParte };
+        return new String[]{primeraParte, segundaParte, terceraParte};
     }
 
 
@@ -385,7 +385,6 @@ public class Laboratorio1 {
 
         return partes;
     }
-
 
 
     // 4
