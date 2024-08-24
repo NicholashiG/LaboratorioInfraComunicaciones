@@ -54,6 +54,15 @@ public class EchoTCPServer {
         // FIN PARTE 2
         // ------------------------------------------
         // PARTE 3
+            case "CAD-SEG":
+                if (answer.length < 3) {
+                    mensajeFinal = metodos.segmentarcadena(Integer.parseInt(answer[1]), Integer.parseInt(answer[1]),Integer.parseInt(answer[1]),Integer.parseInt(answer[1]));
+                } else {
+                    mensajeFinal = metodos.generarCadenaSegmentada(Integer.parseInt(answer[1]), Integer.parseInt(answer[2]));
+                }
+                break;
+            case "CAD-SEG-PAR":
+                mensajeFinal= Arrays.toString(metodos.generarCadenaEnArreglo((Integer.parseInt(answer[1])), Integer.parseInt(answer[2])));
 
         // FIN PARTE 3
         // ------------------------------------------

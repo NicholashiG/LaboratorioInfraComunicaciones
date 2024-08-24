@@ -87,6 +87,7 @@ public class Metodos {
     // través de la red, el cual será el encargado realizar el cálculo de las partes que serán enviadas en
     // mensajes independientes al cliente.
     // Nota: La cadena de caracteres que se genere debe ser de longitud múltiplo de 16 caracteres.
+
     public   String[] generarCadenaEnArreglo(int cantidadTotal, int segmentoLength) {
         int cantidadSegmentos = cantidadTotal / segmentoLength;
         String[] segmentos = new String[cantidadSegmentos];
@@ -113,11 +114,75 @@ public class Metodos {
 
 
 
+    //3a). El programa cliente debe solicitar el ingreso de un código, el usuario digita CAD-SEG seguido de los parámetros
+    // necesarios para realizar la operación (cantidad de caracteres y los tamaños de las partes para separar la cadena).
+    // El mensaje será enviado al servidor a través de la red, el cual será el encargado de generar la cadena, segmentarla en
+    // las partes con los tamaños indicados y devolver el resultado al cliente separados por comas.
 
 
-    //3a
+    public String segmentarcadena (int cadTamanio, int cad1, int cad2, int cad3)
+    {
+        String abecedario = generarCadenaFija(cadTamanio);
+        String nuevo = "";
+        if (cadTamanio == cad1+cad2+cad3)
+        {
+            for (int i = 0; i < cadTamanio; i++)
+            {
+                if (cad1 == i) {
+                    nuevo += abecedario.substring(0, i) + ", ";
+                }
+                if (cad2 == i) {
+                    nuevo += abecedario.substring(cad1, i) + ", ";
+                }
+                if (cad3 == i) {
+                    nuevo += abecedario.substring(cad2, i);
+                }
+            }
+        }else
+        {
+            nuevo = "La division de la cadena no igual a la cantidad pedida";
+        }
+
+        return nuevo;
+
+    }
 
     //3b
+
+
+
+    public static boolean esMultiploDe16(int x) {
+
+        return x % 16 == 0;
+    }
+
+    public String segmentarcadenaPar (int cadTamanio, int cad1, int cad2, int cad3)
+    {
+        boolean isMultiplo = esMultiploDe16(cadTamanio);
+        String abecedario = generarCadenaFija(cadTamanio);
+        String nuevo = "";
+        if (isMultiplo == true && cadTamanio == cad1+cad2+cad3)
+        {
+            for (int i = 0; i < cadTamanio; i++)
+            {
+                if (cad1 == i) {
+                    nuevo += "Parte 1: " + abecedario.substring(0, i) + " /n";
+                }
+                if (cad2 == i) {
+                    nuevo += "Parte 2: " + abecedario.substring(cad1, i) + " /n";
+                }
+                if (cad3 == i) {
+                    nuevo += "Parte 3: " + abecedario.substring(cad2, i);
+                }
+            }
+        }else
+        {
+            nuevo = "La division de la cadena no igual a la cantidad pedida";
+        }
+
+        return nuevo;
+
+    }
 
     //3c
 
