@@ -119,33 +119,45 @@ public class Metodos {
     // El mensaje será enviado al servidor a través de la red, el cual será el encargado de generar la cadena, segmentarla en
     // las partes con los tamaños indicados y devolver el resultado al cliente separados por comas.
 
-
-    public String segmentarcadena (int cadTamanio, int cad1, int cad2, int cad3)
+    public boolean verificarTamanio (String cadena[], int tam)
     {
-        String abecedario = generarCadenaFija(cadTamanio);
-        String nuevo = "";
-        if (cadTamanio == cad1+cad2+cad3)
+        int contador = 0;
+        boolean isTamanio = false;
+        for (int i =2; i<cadena.length; i ++)
         {
-            for (int i = 0; i < cadTamanio; i++)
-            {
-                if (cad1 == i) {
-                    nuevo += abecedario.substring(0, i) + ", ";
-                }
-                if (cad2 == i) {
-                    nuevo += abecedario.substring(cad1, i) + ", ";
-                }
-                if (cad3 == i) {
-                    nuevo += abecedario.substring(cad2, i);
-                }
-            }
-        }else
-        {
-            nuevo = "La division de la cadena no igual a la cantidad pedida";
+            contador = contador + Integer.parseInt(cadena[i]);
         }
 
-        return nuevo;
+        if (tam == contador)
+        {
+            isTamanio = true;
+        }
 
+        return isTamanio;
     }
+
+    public String segmentarCadena(String cadena[]) {
+        String abecedario = generarCadenaFija(Integer.parseInt(cadena[1]));
+        int inicio = 0;
+        int cadTamanio = Integer.parseInt(cadena[1]);
+        boolean isVerdad = verificarTamanio(cadena, cadTamanio);
+
+        if (isVerdad) {
+            StringBuilder resultado = new StringBuilder();
+            for (int i = 2; i < cadena.length; i++) {
+                int longitudSegmento = Integer.parseInt(cadena[i]);
+                if (i > 2) {
+                    resultado.append(", ");
+                }
+                resultado.append(abecedario.substring(inicio, inicio + longitudSegmento));
+                inicio += longitudSegmento;
+            }
+            return resultado.toString();
+        } else {
+            return "La división de la cadena no es igual a la cantidad pedida";
+        }
+    }
+
 
     //3b
 
@@ -156,32 +168,28 @@ public class Metodos {
         return x % 16 == 0;
     }
 
-    public String segmentarcadenaPar (int cadTamanio, int cad1, int cad2, int cad3)
-    {
-        boolean isMultiplo = esMultiploDe16(cadTamanio);
-        String abecedario = generarCadenaFija(cadTamanio);
-        String nuevo = "";
-        if (isMultiplo == true && cadTamanio == cad1+cad2+cad3)
-        {
-            for (int i = 0; i < cadTamanio; i++)
-            {
-                if (cad1 == i) {
-                    nuevo += "Parte 1: " + abecedario.substring(0, i) + " /n";
-                }
-                if (cad2 == i) {
-                    nuevo += "Parte 2: " + abecedario.substring(cad1, i) + " /n";
-                }
-                if (cad3 == i) {
-                    nuevo += "Parte 3: " + abecedario.substring(cad2, i);
-                }
+    public String segmentarCadenaPR(String cadena[]) {
+        String abecedario = generarCadenaFija(Integer.parseInt(cadena[1]));
+        int inicio = 0;
+        int cadTamanio = Integer.parseInt(cadena[1]);
+        boolean isVerdadTamanio = verificarTamanio(cadena, cadTamanio);
+        boolean isVerdadMultiplo = esMultiploDe16(Integer.parseInt(cadena[1]));
+        StringBuilder resultado = new StringBuilder();
+
+        if (isVerdadTamanio && isVerdadMultiplo) {
+            for (int i = 2; i < cadena.length; i++) {
+                int longitudSegmento = Integer.parseInt(cadena[i]);
+                resultado.append("Parte ").append(i - 1).append(": ");
+                resultado.append(abecedario.substring(inicio, inicio + longitudSegmento)).append("\n");
+                inicio += longitudSegmento; // Avanzar el índice de inicio
             }
-        }else
-        {
-            nuevo = "La division de la cadena no igual a la cantidad pedida";
-        }
 
-        return nuevo;
+        } else
+            {
+                resultado.append("La división de la cadena no es igual a la cantidad pedida");
+            }
 
+        return resultado.toString();
     }
 
     //3c
