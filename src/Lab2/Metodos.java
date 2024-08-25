@@ -2,6 +2,8 @@ package src.Lab2;
 
 import java.util.Arrays;
 
+import javax.print.DocFlavor.STRING;
+
 public class Metodos {
     public Metodos() {
     }
@@ -17,11 +19,46 @@ public class Metodos {
 
     // todo: hacer los metodos asignados en el código usando, como siempre, el metodo de separar la cadena
 
-    //1a
+    // 1a El programa cliente debe solicitar el ingreso de un código, el usuario digita CONV-DEC-BIN 
+    // seguido de los dos parámetros necesarios para realizar la conversión. El mensaje será enviado al 
+    // servidor a través de la red, el cual será el encargado de realizar la conversión y devolver el resultado 
+    // al cliente
+    public String convertirEnteroDecimal (String [] answer)
+     {
+        int decimal = Integer.parseInt(answer[1]);
+        int bits = Integer.parseInt(answer[2]);
+        String conversion = Integer.toBinaryString(decimal);
+        String binarioFinal = String.format("%" + bits + "s", conversion).replace(' ', '0');
+        
+        return binarioFinal;
+     }
 
-    //1b
+    // 1b El programa cliente debe solicitar el ingreso de un código, el usuario digita CONV-DEC-HEX 
+    // seguido de los dos parámetros necesarios para realizar la conversión. El mensaje será enviado al 
+    // servidor a través de la red, el cual será el encargado de realizar la conversión y devolver el 
+    // resultado al cliente.
+    public String convertiDecimalHexadecimal (String [] answer)
+    {
+       int decimal = Integer.parseInt(answer[1]);
+       int bits = Integer.parseInt(answer[2]);
+       String hex = Integer.toHexString(decimal).toUpperCase();
+       String hexaFinal = String.format("%" + bits + "s", hex).replace(' ', '0');
 
-    //1c
+       return hexaFinal;
+    }
+
+    // 1cEl programa cliente debe solicitar el ingreso de un código, el usuario digita CONV-BIN-HEXA
+    //  seguido del parámetro necesario para realizar la conversión. El mensaje será enviado al servidor
+    //  a través de la red, el cual será el encargado de realizar la conversión y devolver el resultado
+    //  al cliente.
+
+    public String convertiBinarioHexadecimal(String [] answer)
+    {
+       String binario = answer[1];
+       int decimal = Integer.parseInt(binario, 2);
+       String hex = Integer.toHexString(decimal).toUpperCase();
+       return hex;
+    }
 
     //2a
     // El programa cliente debe solicitar ingresar un código, el usuario digita GEN-CAD seguido de la
@@ -195,5 +232,15 @@ public class Metodos {
     //3c
 
     //4
+    public String unirCadena (String [] parts)
+    {
+        StringBuilder concatenatedString = new StringBuilder();
+
+        // Usar un ciclo for para unir las partes de la cadena
+        for (int i = 1; i < parts.length; i++) {
+            concatenatedString.append(parts[i]);
+        }
+        return concatenatedString.toString();
+    }
 
 }

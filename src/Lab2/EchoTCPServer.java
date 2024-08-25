@@ -38,6 +38,19 @@ public class EchoTCPServer {
         String mensajeFinal = "";
         switch (answer[0]) {
         // PARTE 1
+        //1a
+          case "CONV-DEC-BIN":
+                mensajeFinal = metodos.convertirEnteroDecimal(answer);
+                break;
+        //1b
+        case "CONV-DEC-HEX":
+                mensajeFinal = metodos.convertiDecimalHexadecimal(answer);
+                break;
+        //1c
+        case "CONV-BIN-HEXA":
+        mensajeFinal = metodos.convertiBinarioHexadecimal(answer);
+        break;
+
 
         // FIN PARTE 1
         // ------------------------------------------
@@ -51,6 +64,7 @@ public class EchoTCPServer {
                 break;
             case "GEN-CAD-PAR":
                 mensajeFinal= Arrays.toString(metodos.generarCadenaEnArreglo((Integer.parseInt(answer[1])), Integer.parseInt(answer[2])));
+                break;
         // FIN PARTE 2
         // ------------------------------------------
         // PARTE 3
@@ -60,9 +74,13 @@ public class EchoTCPServer {
 
             case "CAD-SEG-PAR":
                 mensajeFinal= metodos.segmentarCadenaPR(answer);
+                break;
         // FIN PARTE 3
         // ------------------------------------------
         // PARTE 4
+        case "UNI-CAD":
+            mensajeFinal= metodos.unirCadena(answer);
+            break;
 
         // FIN PARTE 4
         }
